@@ -23,8 +23,8 @@ data "aws_iam_policy_document" "lambda_s3_policy" {
     effect    = "Allow"
     actions   = ["s3:PutObject"]
     resources = [
-      aws_s3_bucket.main_bucket.arn,
-      "${aws_s3_bucket.main_bucket.arn}/*"
+      var.bucket_arn,
+      "${var.bucket_arn}/*"
     ]
   }
 }
@@ -38,13 +38,7 @@ resource "aws_iam_policy" "lambda_s3_access" {
 # Attach the IAM policy to the Lambda role
 resource "aws_iam_role_policy_attachment" "lambda_s3_attachment" {
   policy_arn = aws_iam_policy.lambda_s3_access.arn
-  role       = aws_iam_role.lambda_role.name
-}
-
-data "archive_file" "lambda" {
-  type        = "zip"
-  source_file = "lambda_function.py"
-  output_path = var.lambda_zip_path
+  role       = aws_iam_role.iam_for_lambda.name
 }
 
 resource "aws_lambda_function" "test_lambda" {
@@ -53,7 +47,7 @@ resource "aws_lambda_function" "test_lambda" {
   role          = aws_iam_role.iam_for_lambda.arn
   handler       = "lambda_handler"
 
-  source_code_hash = data.archive_file.lambda.output_base64sha256
+  source_code_hash = filebase64sha256(var.lambda_zip_path)
 
   runtime = "python3.11"
 

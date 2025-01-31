@@ -8,11 +8,7 @@ variable "lambda_zip_path" {
   type        = string
 }
 
-variable "aws_region" {
-    description = "AWS Region for the project"
-    type = string
-    validation {
-        condition = contains(["us-east-1"], var.aws_region)
-        error_message = "Invalid region"
-    }
+variable "bucket_arn" {
+  description = "Path for the lambda zip file"
+  type        = string
 }
