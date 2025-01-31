@@ -16,3 +16,14 @@ variable "aws_region" {
         error_message = "Invalid region"
     }
 }
+
+variable "target_bucket_arn" {
+  description = "The ARN of the bucket used to store the stock JSON files"
+  type        = string
+}
+
+
+variable "target_bucket_name" {
+  description = "The name of the bucket used to store the stock JSON files"
+  type        = string
+}
