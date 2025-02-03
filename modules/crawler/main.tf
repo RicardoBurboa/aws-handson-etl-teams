@@ -12,7 +12,7 @@ data "aws_iam_policy_document" "assume_role" {
 }
 
 resource "aws_iam_role" "iam_for_glue" {
-  name               = "s3_getobjects"
+  name               = "crawler_getobjects"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
@@ -62,7 +62,6 @@ data "aws_iam_policy_document" "glue_s3_policy" {
 
 }
 
-
 # Attach the S3 policy to the IAM role
 resource "aws_iam_policy" "glue_s3_access" {
   name   = "glue_s3_getobject"
@@ -74,8 +73,6 @@ resource "aws_iam_role_policy_attachment" "glue_s3_attachment" {
   policy_arn = aws_iam_policy.glue_s3_access.arn
   role       = aws_iam_role.iam_for_glue.name
 }
-
-
 
 resource "aws_glue_catalog_database" "databaseglue" {
   name = var.gluedb_name

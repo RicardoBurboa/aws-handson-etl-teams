@@ -5,7 +5,7 @@ provider "aws"{
 module "s3_bucket" {
     source = "./modules/s3_bucket"
     bucket_name = "xideraloriginbucketdinamita"
-    output_bucket_name = "xideraloutputdinamita"
+    output_bucket_name = "equipodinamita"
 }
 
 module "iam" {
@@ -36,3 +36,12 @@ module "crawler" {
   gluedb_name = "testo"
 }
 
+
+module "notebook" {
+  source           = "./modules/notebook"
+  glue_job_name    = "dinamitason"
+  glue_role_arn     = module.iam.glue_full_role_arn
+  output_bucket        = "equipodinamita"
+  s3_script_key    = "equipodinamita.py"
+  number_of_workers = 5
+}
