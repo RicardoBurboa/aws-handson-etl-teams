@@ -24,3 +24,10 @@ module "rds" {
   rds_identifier = var.rds_identifier
 }
 
+
+module "crawler" {
+  source        = "./modules/crawler"
+  bucket_name_cesar = "mergedatainventarioeq2"
+  gluedb_name = "testo"
+}
+
