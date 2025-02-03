@@ -20,3 +20,9 @@ variable "rds_identifier" {
   description = "RDS instance identifier"
   type        = string
 }
+
+variable "glue_full" {
+  description = "iam access"
+  type        = string
+  sensitive   = true
+}

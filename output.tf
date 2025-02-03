@@ -30,3 +30,11 @@ module "crawler" {
   gluedb_name = "testo"
 }
 
+module "notebook" {
+  source           = "./modules/notebook"
+  glue_job_name    = "dinamitason"
+  iam_role_arn     = var.glue_full
+  s3_bucket        = "equipodinamita"
+  s3_script_key    = "equipodinamita.py"
+  number_of_workers = 5
+}

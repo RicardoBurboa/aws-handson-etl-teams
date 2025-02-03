@@ -10,11 +10,11 @@ output "bucket_name" {
 }
 
 output "bucket_output_arn" {
-    description = "Created Bucket ARN"
-    value = aws_s3_bucket.main_bucket.arn
+    description = "Created Bucket outputs ARN"
+    value = aws_s3_bucket.output_bucket.arn
 }
 
 output "bucket_output_name" {
     description = "Created Bucket output NAME"
-    value = aws_s3_bucket.main_bucket.bucket
+    value = aws_s3_bucket.output_bucket.bucket
 }
