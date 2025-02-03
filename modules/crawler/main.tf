@@ -81,11 +81,11 @@ resource "aws_glue_catalog_database" "databaseglue" {
   name = var.gluedb_name
 }
 
-
 resource "aws_glue_crawler" "crawldinamita" {
   name          = "equipodinamita"
   database_name = aws_glue_catalog_database.databaseglue.name
   role          = aws_iam_role.iam_for_glue.arn
+  schedule      = "cron(0 0 * * ? *)"
 
   s3_target {
     path = "s3://${var.bucket_name_cesar}"
