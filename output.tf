@@ -4,6 +4,7 @@ provider "aws"{
 module "s3_bucket" {
     source = "./modules/s3_bucket"
     bucket_name = "xideraldanielpractice"
+    bucket_output_name = "xideraloutputdinamiton"
 }
 
 module "lambda" {
@@ -13,8 +14,6 @@ module "lambda" {
     bucket_arn = module.s3_bucket.bucket_arn
     lambda_zip_path = "./modules/lambda/funcionEquipoDinamitaGeneratePOSData-18f69934-b9d4-495c-b4bc-19703487fef8.zip"
 }
-
-
 
 module "rds" {
   source        = "./modules/rds"
