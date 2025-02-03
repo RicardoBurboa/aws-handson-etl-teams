@@ -4,15 +4,22 @@ provider "aws"{
 
 module "s3_bucket" {
     source = "./modules/s3_bucket"
-    bucket_name = "xideraldanielpractice"
+    bucket_name = "xideraloriginbucketdinamita"
+    output_bucket_name = "xideraloutputdinamita"
+}
+
+module "iam" {
+  source = "./modules/iam"
+  stock_gen_bucket_arn = module.s3_bucket.bucket_arn
 }
 
 module "lambda" {
     source = "./modules/lambda"
-    lambda_name = "okis"
+    lambda_name = "funcionEquipoDinamitaGeneratePOSData"
     bucket_name = module.s3_bucket.bucket_name
     bucket_arn = module.s3_bucket.bucket_arn
     lambda_zip_path = "./modules/lambda/funcionEquipoDinamitaGeneratePOSData-18f69934-b9d4-495c-b4bc-19703487fef8.zip"
+    lambda_role_arn = module.iam.lambda_role_arn
 }
 
 module "rds" {
