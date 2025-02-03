@@ -9,11 +9,16 @@ variable "lambda_zip_path" {
 }
 
 variable "bucket_arn" {
-  description = "Path for the lambda zip file"
+  description = "Bucket ARN where the stock JSON files are stored"
   type        = string
 }
 
 variable "bucket_name" {
   description = "The name of the bucket used to store the stock JSON files"
+  type        = string
+}
+
+variable "lambda_role_arn" {
+  description = "ARN of the role used for the lambda"
   type        = string
 }
