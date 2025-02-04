@@ -15,7 +15,8 @@ The following project has the structure to create the following resources in AWS
 
 ## Diagrama
 
-   ![Diagrama del proyecto](https://github.com/user-attachments/assets/96f280ef-d427-4807-b6fd-176235adf856)
+   ![Diagrama del proyecto](https://github.com/user-attachments/assets/bb903004-9f5d-4019-84a6-2041ba2f47a3)
+
 
 ## Required secrets
 
