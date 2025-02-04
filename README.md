@@ -12,6 +12,11 @@ The following project has the structure to create the following resources in AWS
 
  - **Glue**: Used to process the data from team B.
 
+
+## Diagrama
+
+   ![Diagrama del proyecto](https://github.com/user-attachments/assets/96f280ef-d427-4807-b6fd-176235adf856)
+
 ## Required secrets
 
 The following secrets must be configured in `secrets.tfvars`.
